@@ -34,15 +34,17 @@ public class FlutterMidiProPlugin: NSObject, FlutterPlugin {
         result(message)
       case "play_midi_note":
         _arguments = call.arguments as! [String : Any];
+        let channel = UInt8(_arguments["channel"] as! Int)
         let note = UInt8(_arguments["note"] as! Int)
         let velocity = UInt8(_arguments["velocity"] as! Int)
-        samplerNode.startNote(note, withVelocity: velocity, onChannel: 0)
+        samplerNode.startNote(note, withVelocity: velocity, onChannel: channel)
         let message = "Playing: \(String(describing: note))"
         result(message)
       case "stop_midi_note":
         _arguments = call.arguments as! [String : Any];
+        let channel = UInt8(_arguments["channel"] as! Int)
         let note = UInt8(_arguments["note"] as! Int)
-        samplerNode.stopNote(note, onChannel: 0)
+        samplerNode.stopNote(note, onChannel: channel)
         let message = "Stopped: \(String(describing: note))"
         result(message)
     default:

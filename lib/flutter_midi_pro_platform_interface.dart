@@ -48,12 +48,12 @@ abstract class FlutterMidiProPlatform extends PlatformInterface {
   }
 
   Future<String?> stopMidiNote(
-      {required int midi, required int velocity}) async {
+      {required int channel, required int midi, required int velocity}) async {
     throw UnimplementedError('stopMidiNote() has not been implemented.');
   }
 
   Future<String?> playMidiNote(
-      {required int midi, required int velocity}) async {
+      {required int channel, required int midi, required int velocity}) async {
     throw UnimplementedError('playMidiNote()  has not been implemented.');
   }
 }

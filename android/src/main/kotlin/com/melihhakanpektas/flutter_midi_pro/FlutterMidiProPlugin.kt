@@ -52,11 +52,12 @@ class FlutterMidiProPlugin: FlutterPlugin, MethodCallHandler {
         result.error("LOAD_ERROR", "Failed to load soundfont", null)
       }
     } else if (call.method.equals("play_midi_note")) {
+      val channel: Int = call.argument("channel")!!
       val note: Int = call.argument("note")!!
       val velocity: Int = call.argument("velocity")!!
       try {
         val msg = ShortMessage()
-        msg.setMessage(ShortMessage.NOTE_ON, 0, note, velocity)
+        msg.setMessage(ShortMessage.NOTE_ON, channel, note, velocity)
         recv.send(msg, -1)
         result.success("MIDI note played successfully")
       } catch (e: InvalidMidiDataException) {
@@ -64,11 +65,12 @@ class FlutterMidiProPlugin: FlutterPlugin, MethodCallHandler {
         result.error("PLAY_ERROR", "Failed to play MIDI note", null)
       }
     } else if (call.method.equals("stop_midi_note")) {
+      val channel: Int = call.argument("channel")!!
       val note: Int = call.argument("note")!!
       val velocity: Int = call.argument("velocity")!!
       try {
         val msg = ShortMessage()
-        msg.setMessage(ShortMessage.NOTE_OFF, 0, note, velocity)
+        msg.setMessage(ShortMessage.NOTE_OFF, channel, note, velocity)
         recv.send(msg, -1)
         result.success("MIDI note stopped successfully")
       } catch (e: InvalidMidiDataException) {

@@ -50,10 +50,11 @@ class MidiPro {
   /// code above, the default value. Defaults to 127
   Future<String?> stopMidiNote({
     required int midi,
+    int channel = 0,
     int velocity = 127,
   }) async =>
       FlutterMidiProPlatform.instance
-          .stopMidiNote(midi: midi, velocity: velocity);
+          .stopMidiNote(channel: channel, midi: midi, velocity: velocity);
 
   /// This function plays a MIDI note with a given MIDI value and velocity using the
   /// FlutterMidiProPlatform.
@@ -67,8 +68,9 @@ class MidiPro {
   /// loudest. In the code snippet provided, the. Defaults to 64
   Future<String?> playMidiNote({
     required int midi,
+    int channel = 0,
     int velocity = 64,
   }) async =>
       FlutterMidiProPlatform.instance
-          .playMidiNote(midi: midi, velocity: velocity);
+          .playMidiNote(channel: channel, midi: midi, velocity: velocity);
 }
