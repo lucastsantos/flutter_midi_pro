@@ -73,4 +73,11 @@ class MidiPro {
   }) async =>
       FlutterMidiProPlatform.instance
           .playMidiNote(channel: channel, midi: midi, velocity: velocity);
+
+  Future<String?> changeInstrument({required int channel, required int instrument}) async {
+    return FlutterMidiProPlatform.instance.changeInstrument(
+      channel: channel, 
+      instrument: instrument,
+    );
+  }
 }

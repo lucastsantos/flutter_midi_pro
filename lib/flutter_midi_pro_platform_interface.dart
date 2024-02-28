@@ -56,4 +56,9 @@ abstract class FlutterMidiProPlatform extends PlatformInterface {
       {required int channel, required int midi, required int velocity}) async {
     throw UnimplementedError('playMidiNote()  has not been implemented.');
   }
+
+  @override
+  Future<String?> changeInstrument({required int channel, required int instrument}) async {
+    throw UnimplementedError('changeInstrument() has not been implemented.');
+  }
 }

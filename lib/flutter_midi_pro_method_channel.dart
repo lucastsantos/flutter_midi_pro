@@ -49,11 +49,18 @@ class MethodChannelFlutterMidiPro extends FlutterMidiProPlatform {
   @override
   Future<String?> playMidiNote(
       {required int channel, required int midi, required int velocity}) async {
-    return methodChannel
-        .invokeMethod('play_midi_note', {
-          'channel': channel,
-          'note': midi,
-          'velocity': velocity
-        });
+    return methodChannel.invokeMethod('play_midi_note', {
+        'channel': channel,
+        'note': midi,
+        'velocity': velocity
+      });
+  }
+
+  @override
+  Future<String?> changeInstrument({required int channel, required int instrument}) async {
+    return methodChannel.invokeMethod('change_instrument', {
+      'channel': channel,
+      'instrument': instrument,
+    });
   }
 }
