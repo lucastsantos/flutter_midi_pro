@@ -57,10 +57,11 @@ class MethodChannelFlutterMidiPro extends FlutterMidiProPlatform {
   }
 
   @override
-  Future<String?> changeInstrument({required int channel, required int instrument}) async {
+  Future<String?> changeInstrument({required int channel, required int instrument, required int bank}) async {
     return methodChannel.invokeMethod('change_instrument', {
       'channel': channel,
       'instrument': instrument,
+      'bank': bank
     });
   }
 }

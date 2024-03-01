@@ -58,7 +58,7 @@ abstract class FlutterMidiProPlatform extends PlatformInterface {
   }
 
   @override
-  Future<String?> changeInstrument({required int channel, required int instrument}) async {
+  Future<String?> changeInstrument({required int channel, required int instrument, required int bank}) async {
     throw UnimplementedError('changeInstrument() has not been implemented.');
   }
 }

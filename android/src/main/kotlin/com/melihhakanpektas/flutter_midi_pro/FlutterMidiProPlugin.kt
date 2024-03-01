@@ -89,10 +89,19 @@ class FlutterMidiProPlugin : FlutterPlugin, MethodCallHandler {
             "change_instrument" -> {
                 val channel: Int = call.argument("channel")!!
                 val instrument: Int = call.argument("instrument")!!
+                val bank: Int = call.argument("bank") ?: -1
+
                 try {
                     val msg = ShortMessage()
                     msg.setMessage(ShortMessage.PROGRAM_CHANGE, channel, instrument, 0)
                     recv.send(msg, -1)
+
+                    if (bank >= 0) {
+                        val bankMsg = ShortMessage()
+                        bankMsg.setMessage(ShortMessage.CONTROL_CHANGE, channel, 0, bank)
+                        recv.send(bankMsg, -1)
+                    }
+
                     result.success("Instrument changed successfully")
                 } catch (e: InvalidMidiDataException) {
                     e.printStackTrace()
